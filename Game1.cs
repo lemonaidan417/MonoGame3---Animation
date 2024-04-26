@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace MonoGame3___Animation
 {
@@ -8,10 +9,12 @@ namespace MonoGame3___Animation
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
         Texture2D brownTribbleTexture;
         Texture2D creamTribbleTexture;
         Texture2D greyTribbleTexture;
         Texture2D orangeTribbleTexture;
+        Texture2D backgroundTexture;
 
         Rectangle brownTribbleRect;
         Rectangle creamTribbleRect;
@@ -24,6 +27,12 @@ namespace MonoGame3___Animation
         Vector2 greyTribbleSpeed;
         Vector2 orangeTribbleSpeed;
 
+        Color brownTribbleColor;
+        Color creamTribbleColor;
+        Color greyTribbleColor;
+        Color orangeTribbleColor;
+
+        Random random = new Random();
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -35,21 +44,26 @@ namespace MonoGame3___Animation
         {
             // TODO: Add your initialization logic here
 
-            window = new Rectangle(0, 0, 800, 600);
+            window = new Rectangle(0, 0, 800, 480);
             _graphics.PreferredBackBufferWidth = window.Width;
             _graphics.PreferredBackBufferHeight = window.Height;
 
-            brownTribbleRect = new Rectangle(100, 300, 100, 100);
-            brownTribbleSpeed = new Vector2(8, 2);
 
-            creamTribbleRect = new Rectangle(300, 300, 100, 100);
-            creamTribbleSpeed = new Vector2(10, 0);
+            brownTribbleRect = new Rectangle(random.Next(0, window.Width - 100), random.Next(0, window.Height - 100), 100, 100);
+            brownTribbleSpeed = new Vector2(0, 50);
+            brownTribbleColor = Color.White;
 
-            greyTribbleRect = new Rectangle(500, 10, 100, 100);
-            greyTribbleSpeed = new Vector2(10, 0);
+            creamTribbleRect = new Rectangle(random.Next(0, window.Width- 100), random.Next(0, window.Height - 100), 100, 100);
+            creamTribbleSpeed = new Vector2(50, 0);
+            creamTribbleColor = Color.White;
 
-            orangeTribbleRect = new Rectangle(200, 100, 100, 100);
-            orangeTribbleSpeed = new Vector2(10, 0);
+            greyTribbleRect = new Rectangle(random.Next(0, window.Width - 100), random.Next(0, window.Height - 100), 100, 100);
+            greyTribbleSpeed = new Vector2(25, 2);
+            greyTribbleColor = Color.White;
+
+            orangeTribbleRect = new Rectangle(random.Next(0, window.Width - 100), random.Next(0, window.Height - 100), 100, 100);
+            orangeTribbleSpeed = new Vector2(8, 25);
+            orangeTribbleColor = Color.White;
 
             base.Initialize();
         }
@@ -60,6 +74,7 @@ namespace MonoGame3___Animation
 
             // TODO: use this.Content to load your game content here
 
+            backgroundTexture = Content.Load<Texture2D>("space-background");
             brownTribbleTexture = Content.Load<Texture2D>("tribbleBrown");
             creamTribbleTexture = Content.Load<Texture2D>("tribbleCream");
             greyTribbleTexture = Content.Load<Texture2D>("tribbleGrey");
@@ -74,24 +89,66 @@ namespace MonoGame3___Animation
                 Exit();
 
             // TODO: Add your update logic here
-
-            // Left n Right
-            brownTribbleRect.X += (int)brownTribbleSpeed.X;
-            if (brownTribbleRect.Right > window.Width || brownTribbleRect.Left < 0)
             {
-                brownTribbleSpeed.X *= -1;
-            }
+                // Left n Right
+                brownTribbleRect.X += (int)brownTribbleSpeed.X;
+                if (brownTribbleRect.Right > window.Width || brownTribbleRect.Left < 0)
+                {
+                    brownTribbleSpeed.X *= -1;
+                }
 
-            // Up n Down
-            brownTribbleRect.Y += (int)brownTribbleSpeed.Y;
-            if (brownTribbleRect.Top < 0 || brownTribbleRect.Bottom > window.Height)
+                // Up n Down
+                brownTribbleRect.Y += (int)brownTribbleSpeed.Y;
+                if (brownTribbleRect.Top < 0 || brownTribbleRect.Bottom > window.Height)
+                {
+                    brownTribbleSpeed.Y *= -1;
+                }
+            } // Brown Tribble
             {
-                brownTribbleSpeed.Y *= -1;
-            }
+                // Left n Right
+                creamTribbleRect.X += (int)creamTribbleSpeed.X;
+                if (creamTribbleRect.Right > window.Width || creamTribbleRect.Left < 0)
+                {
+                    creamTribbleSpeed.X *= -1;
+                }
 
-            /* creamTribbleRect.X += (int)creamTribbleSpeed.X;
-            creamTribbleRect.Y += (int)creamTribbleSpeed.Y; */
+                // Up n Down
+                creamTribbleRect.Y += (int)creamTribbleSpeed.Y;
+                if (creamTribbleRect.Top < 0 || creamTribbleRect.Bottom > window.Height)
+                {
+                    creamTribbleSpeed.Y *= -1;
+                }
+            } // Cream Tribble
+            {
+                // Left n Right
+                greyTribbleRect.X += (int)greyTribbleSpeed.X;
+                if (greyTribbleRect.Right > window.Width || greyTribbleRect.Left < 0)
+                {
+                    greyTribbleSpeed.X *= -1;
+                }
 
+                // Up n Down
+                greyTribbleRect.Y += (int)greyTribbleSpeed.Y;
+                if (greyTribbleRect.Top < 0 || greyTribbleRect.Bottom > window.Height)
+                {
+                    greyTribbleSpeed.Y *= -1;
+                }
+            } // Grey Tribble
+            {
+                // Left n Right
+                orangeTribbleRect.X += (int)orangeTribbleSpeed.X;
+                if (orangeTribbleRect.Right > window.Width || orangeTribbleRect.Left < 0)
+                {
+                    orangeTribbleSpeed.X *= -1;
+                }
+
+                // Up n Down
+                orangeTribbleRect.Y += (int)orangeTribbleSpeed.Y;
+                if (orangeTribbleRect.Top < 0 || orangeTribbleRect.Bottom > window.Height)
+                {
+                    orangeTribbleSpeed.Y *= -1;
+                }
+            } // Orange Tribble
 
             base.Update(gameTime);
         }
@@ -103,10 +160,11 @@ namespace MonoGame3___Animation
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
 
-            _spriteBatch.Draw(brownTribbleTexture, brownTribbleRect, Color.White);
-            _spriteBatch.Draw(creamTribbleTexture, creamTribbleRect, Color.White);
-            _spriteBatch.Draw(greyTribbleTexture, greyTribbleRect, Color.White);
-            _spriteBatch.Draw(orangeTribbleTexture, orangeTribbleRect, Color.White);
+            _spriteBatch.Draw(backgroundTexture, new Vector2(0, 0), Color.White);
+            _spriteBatch.Draw(brownTribbleTexture, brownTribbleRect, brownTribbleColor);
+            _spriteBatch.Draw(creamTribbleTexture, creamTribbleRect, creamTribbleColor);
+            _spriteBatch.Draw(greyTribbleTexture, greyTribbleRect, greyTribbleColor);
+            _spriteBatch.Draw(orangeTribbleTexture, orangeTribbleRect, orangeTribbleColor);
 
             _spriteBatch.End();
             base.Draw(gameTime);
