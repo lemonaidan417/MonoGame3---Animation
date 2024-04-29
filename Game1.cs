@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 
 namespace MonoGame3___Animation
 {
@@ -33,6 +34,8 @@ namespace MonoGame3___Animation
         Color orangeTribbleColor;
 
         Random random = new Random();
+
+        int numColors;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -50,19 +53,19 @@ namespace MonoGame3___Animation
 
 
             brownTribbleRect = new Rectangle(random.Next(0, window.Width - 100), random.Next(0, window.Height - 100), 100, 100);
-            brownTribbleSpeed = new Vector2(0, 50);
+            brownTribbleSpeed = new Vector2(0, 25);
             brownTribbleColor = Color.White;
 
             creamTribbleRect = new Rectangle(random.Next(0, window.Width- 100), random.Next(0, window.Height - 100), 100, 100);
-            creamTribbleSpeed = new Vector2(50, 0);
+            creamTribbleSpeed = new Vector2(25, 0);
             creamTribbleColor = Color.White;
 
             greyTribbleRect = new Rectangle(random.Next(0, window.Width - 100), random.Next(0, window.Height - 100), 100, 100);
-            greyTribbleSpeed = new Vector2(25, 2);
+            greyTribbleSpeed = new Vector2(15, 2);
             greyTribbleColor = Color.White;
 
             orangeTribbleRect = new Rectangle(random.Next(0, window.Width - 100), random.Next(0, window.Height - 100), 100, 100);
-            orangeTribbleSpeed = new Vector2(8, 25);
+            orangeTribbleSpeed = new Vector2(8, 15);
             orangeTribbleColor = Color.White;
 
             base.Initialize();
@@ -80,7 +83,6 @@ namespace MonoGame3___Animation
             greyTribbleTexture = Content.Load<Texture2D>("tribbleGrey");
             orangeTribbleTexture = Content.Load<Texture2D>("tribbleOrange");
             
-
         }
 
         protected override void Update(GameTime gameTime)
@@ -95,6 +97,7 @@ namespace MonoGame3___Animation
                 if (brownTribbleRect.Right > window.Width || brownTribbleRect.Left < 0)
                 {
                     brownTribbleSpeed.X *= -1;
+
                 }
 
                 // Up n Down
@@ -102,7 +105,32 @@ namespace MonoGame3___Animation
                 if (brownTribbleRect.Top < 0 || brownTribbleRect.Bottom > window.Height)
                 {
                     brownTribbleSpeed.Y *= -1;
+
+                    numColors = random.Next(0, 4);
+
+                    if (numColors == 0)
+                    {
+                        brownTribbleColor = Color.White;
+                    }
+                    else if (numColors == 1)
+                    {
+                        brownTribbleColor = Color.Red;
+                    }
+                    else if (numColors == 2)
+                    {
+                        brownTribbleColor = Color.Yellow;
+                    }
+                    else if (numColors == 3)
+                    {
+                        brownTribbleColor = Color.Green;
+                    }
+                    else if (numColors == 4)
+                    {
+                        brownTribbleColor = Color.Blue;
+                    }
                 }
+
+                
             } // Brown Tribble
             {
                 // Left n Right
@@ -110,6 +138,29 @@ namespace MonoGame3___Animation
                 if (creamTribbleRect.Right > window.Width || creamTribbleRect.Left < 0)
                 {
                     creamTribbleSpeed.X *= -1;
+
+                    numColors = random.Next(0, 4);
+
+                    if (numColors == 0)
+                    {
+                        creamTribbleColor = Color.White;
+                    }
+                    else if (numColors == 1)
+                    {
+                        creamTribbleColor = Color.Red;
+                    }
+                    else if (numColors == 2)
+                    {
+                        creamTribbleColor = Color.Yellow;
+                    }
+                    else if (numColors == 3)
+                    {
+                        creamTribbleColor = Color.Green;
+                    }
+                    else if (numColors == 4)
+                    {
+                        creamTribbleColor = Color.Blue;
+                    }
                 }
 
                 // Up n Down
@@ -125,6 +176,29 @@ namespace MonoGame3___Animation
                 if (greyTribbleRect.Right > window.Width || greyTribbleRect.Left < 0)
                 {
                     greyTribbleSpeed.X *= -1;
+
+                    numColors = random.Next(0, 4);
+
+                    if (numColors == 0)
+                    {
+                        greyTribbleColor = Color.White;
+                    }
+                    else if (numColors == 1)
+                    {
+                        greyTribbleColor = Color.Red;
+                    }
+                    else if (numColors == 2)
+                    {
+                        greyTribbleColor = Color.Yellow;
+                    }
+                    else if (numColors == 3)
+                    {
+                        greyTribbleColor = Color.Green;
+                    }
+                    else if (numColors == 4)
+                    {
+                        greyTribbleColor = Color.Blue;
+                    }
                 }
 
                 // Up n Down
@@ -132,6 +206,29 @@ namespace MonoGame3___Animation
                 if (greyTribbleRect.Top < 0 || greyTribbleRect.Bottom > window.Height)
                 {
                     greyTribbleSpeed.Y *= -1;
+
+                    numColors = random.Next(0, 4);
+
+                    if (numColors == 0)
+                    {
+                        greyTribbleColor = Color.White;
+                    }
+                    else if (numColors == 1)
+                    {
+                        greyTribbleColor = Color.Red;
+                    }
+                    else if (numColors == 2)
+                    {
+                        greyTribbleColor = Color.Yellow;
+                    }
+                    else if (numColors == 3)
+                    {
+                        greyTribbleColor = Color.Green;
+                    }
+                    else if (numColors == 4)
+                    {
+                        greyTribbleColor = Color.Blue;
+                    }
                 }
             } // Grey Tribble
             {
@@ -140,6 +237,29 @@ namespace MonoGame3___Animation
                 if (orangeTribbleRect.Right > window.Width || orangeTribbleRect.Left < 0)
                 {
                     orangeTribbleSpeed.X *= -1;
+
+                    numColors = random.Next(0, 4);
+
+                    if (numColors == 0)
+                    {
+                        orangeTribbleColor = Color.White;
+                    }
+                    else if (numColors == 1)
+                    {
+                        orangeTribbleColor = Color.Red;
+                    }
+                    else if (numColors == 2)
+                    {
+                        orangeTribbleColor = Color.Yellow;
+                    }
+                    else if (numColors == 3)
+                    {
+                        orangeTribbleColor = Color.Green;
+                    }
+                    else if (numColors == 4)
+                    {
+                        orangeTribbleColor = Color.Blue;
+                    }
                 }
 
                 // Up n Down
@@ -147,6 +267,29 @@ namespace MonoGame3___Animation
                 if (orangeTribbleRect.Top < 0 || orangeTribbleRect.Bottom > window.Height)
                 {
                     orangeTribbleSpeed.Y *= -1;
+
+                    numColors = random.Next(0, 4);
+
+                    if (numColors == 0)
+                    {
+                        orangeTribbleColor = Color.White;
+                    }
+                    else if (numColors == 1)
+                    {
+                        orangeTribbleColor = Color.Red;
+                    }
+                    else if (numColors == 2)
+                    {
+                        orangeTribbleColor = Color.Yellow;
+                    }
+                    else if (numColors == 3)
+                    {
+                        orangeTribbleColor = Color.Green;
+                    }
+                    else if (numColors == 4)
+                    {
+                        orangeTribbleColor = Color.Blue;
+                    }
                 }
             } // Orange Tribble
 
